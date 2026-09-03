@@ -1,32 +1,323 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IdentityConsult</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Wolfhagen Identity Consult ApS provides senior identity architecture, governance, privileged access, directory, integration and troubleshooting services.">
+  <meta name="theme-color" content="#0f62fe">
+  <title>Wolfhagen Identity Consult ApS | Identity Architecture &amp; Security</title>
+  <style>
+    :root {
+      --blue-60: #0f62fe;
+      --blue-70: #0043ce;
+      --gray-100: #161616;
+      --gray-80: #393939;
+      --gray-50: #8d8d8d;
+      --gray-20: #e0e0e0;
+      --gray-10: #f4f4f4;
+      --white: #ffffff;
+      --content: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--gray-100);
+      background: var(--white);
+      font-family: "IBM Plex Sans", "Segoe UI", Arial, sans-serif;
+      line-height: 1.55;
+    }
+
+    a { color: var(--blue-70); }
+    a:focus-visible, .button:focus-visible { outline: 3px solid var(--gray-100); outline-offset: 3px; }
+
+    .site-header {
+      min-height: 72px;
+      border-bottom: 1px solid var(--gray-20);
+      background: rgba(255, 255, 255, 0.96);
+    }
+
+    .header-inner, .hero-inner, .section-inner, .footer-inner {
+      width: min(var(--content), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .header-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--gray-100);
+      text-decoration: none;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .brand img { width: 45px; height: 45px; object-fit: contain; }
+    nav { display: flex; gap: 24px; }
+    nav a { color: var(--gray-80); text-decoration: none; font-size: 0.95rem; }
+    nav a:hover { color: var(--blue-60); }
+
+    .hero {
+      background: linear-gradient(120deg, var(--gray-100) 0%, #262626 64%, #001d6c 100%);
+      color: var(--white);
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      min-height: 590px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(250px, 0.6fr);
+      align-items: center;
+      gap: 64px;
+      padding: 72px 0;
+    }
+
+    .eyebrow {
+      margin: 0 0 20px;
+      color: #a6c8ff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 800px;
+      margin: 0;
+      font-size: clamp(2.6rem, 6vw, 5.2rem);
+      line-height: 1.03;
+      font-weight: 400;
+      letter-spacing: -0.035em;
+    }
+
+    .hero-copy {
+      max-width: 740px;
+      margin: 28px 0 0;
+      color: var(--gray-20);
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+    }
+
+    .availability-badge { display: inline-flex; align-items: center; gap: 10px; margin: 28px 0 0; padding: 10px 14px; border: 1px solid rgba(166,200,255,.65); background: rgba(15,98,254,.18); color: var(--white); font-size: .95rem; font-weight: 600; }
+    .availability-badge::before { content: ""; width: 9px; height: 9px; flex: 0 0 9px; border-radius: 50%; background: #42be65; box-shadow: 0 0 0 4px rgba(66,190,101,.16); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      min-width: 210px;
+      min-height: 52px;
+      padding: 14px 18px;
+      border: 1px solid var(--blue-60);
+      background: var(--blue-60);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .button:hover { background: var(--blue-70); border-color: var(--blue-70); }
+    .button.secondary { background: transparent; border-color: var(--gray-50); }
+    .button.secondary:hover { background: var(--gray-80); }
+
+    .crest-panel {
+      display: grid;
+      place-items: center;
+      justify-self: end;
+      width: min(100%, 330px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(255,255,255,0.24);
+      background: rgba(255,255,255,0.06);
+    }
+    .crest-panel img {
+      width: 77%;
+      height: 77%;
+      object-fit: contain;
+      filter: invert(1);
+      opacity: 0.94;
+    }
+
+    section { padding: 88px 0; }
+    .section-label { color: var(--blue-60); font-weight: 600; margin: 0 0 16px; }
+    h2 { margin: 0; font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.08; font-weight: 400; letter-spacing: -0.025em; }
+    .lead { max-width: 800px; margin: 24px 0 0; color: var(--gray-80); font-size: 1.15rem; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      margin-top: 48px;
+      background: var(--gray-20);
+      border: 1px solid var(--gray-20);
+    }
+    .card { min-height: 260px; padding: 32px; background: var(--white); }
+    .card-number { color: var(--blue-60); font-size: 0.9rem; font-weight: 600; }
+    .card h3 { margin: 42px 0 14px; font-size: 1.35rem; font-weight: 500; }
+    .card p { margin: 0; color: var(--gray-80); }
+
+    .experience { background: var(--gray-10); }
+    .experience-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 72px; align-items: start; }
+    .experience-areas {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: 40px;
+      border: 1px solid var(--gray-20);
+      background: var(--gray-20);
+    }
+    .experience-area { padding: 24px; background: var(--white); }
+    .experience-area h3 { margin: 0 0 10px; font-size: 1.1rem; font-weight: 600; }
+    .experience-area p { margin: 0; color: var(--gray-80); font-size: 0.98rem; }
+    .experience-highlight {
+      margin-top: 32px;
+      padding: 24px;
+      border-left: 4px solid var(--blue-60);
+      background: var(--white);
+      color: var(--gray-80);
+    }
+    .experience-highlight strong { color: var(--gray-100); }
+    .facts { border-top: 1px solid var(--gray-80); }
+    .fact { display: grid; grid-template-columns: 150px 1fr; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--gray-20); }
+    .fact dt { color: var(--gray-80); }
+    .fact dd { margin: 0; font-weight: 600; }
+
+    .partner-note {
+      margin-top: 40px;
+      padding: 24px;
+      border-left: 4px solid var(--blue-60);
+      background: var(--white);
+    }
+    .partner-note p { margin: 0; color: var(--gray-80); }
+
+    .contact { background: var(--blue-60); color: var(--white); }
+    .contact-grid { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; }
+    .contact h2 { max-width: 800px; }
+    .contact .button { min-width: 280px; background: var(--gray-100); border-color: var(--gray-100); }
+    .contact .button:hover { background: var(--gray-80); }
+
+    footer { padding: 32px 0; background: var(--gray-100); color: var(--gray-20); }
+    .footer-inner { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    footer p { margin: 0; font-size: 0.9rem; }
+
+    @media (max-width: 820px) {
+      nav { display: none; }
+      .hero-inner, .experience-grid, .contact-grid { grid-template-columns: 1fr; }
+      .experience-areas { grid-template-columns: 1fr; }
+      .hero-inner { min-height: auto; gap: 48px; }
+      .crest-panel { justify-self: start; width: min(72vw, 290px); }
+      .cards { grid-template-columns: 1fr; }
+      .contact .button { min-width: 0; width: 100%; }
+    }
+
+    @media (max-width: 520px) {
+      .header-inner, .hero-inner, .section-inner, .footer-inner { width: min(100% - 28px, var(--content)); }
+      section { padding: 64px 0; }
+      .fact { grid-template-columns: 1fr; gap: 4px; }
+      .button { width: 100%; }
+    }
+  </style>
 </head>
 <body>
-    <h1>IdentityConsult</h1>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Wolfhagen Identity Consult ApS home">
+        <img src="wolfhagen_vaabenskjold_bw_bold.png" alt="Wolfhagen Identity Consult ApS heraldic crest">
+        <span>Wolfhagen Identity Consult ApS</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <h2>Franz Wolfhagen</h2>
+  <main id="top">
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Independent identity security expertise</p>
+          <h1>Identity architecture built on deep experience.</h1>
+          <p class="hero-copy">Senior advisory, architecture and troubleshooting for complex identity governance, privileged access, directory and integration environments.</p>
+          <p class="availability-badge">Open for engagements from October 2026</p>
+          <div class="hero-actions">
+            <a class="button" href="mailto:franzwolfhagen@identityconsult.dk">Start a conversation <span aria-hidden="true">→</span></a>
+            <a class="button secondary" href="#services">Explore services <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+        <div class="crest-panel" aria-hidden="true">
+          <img src="wolfhagen_vaabenskjold_bw_bold.png" alt="">
+        </div>
+      </div>
+    </section>
 
-    <p>
-        Identity Governance & Administration Consultant
-    </p>
+    <section id="services">
+      <div class="section-inner">
+        <p class="section-label">What I do</p>
+        <h2>Practical guidance for demanding identity environments</h2>
+        <p class="lead">Wolfhagen Identity Consult ApS helps organizations understand, improve and operate identity governance solutions, from architecture and integration to observability and critical problem resolution.</p>
+        <div class="cards">
+          <article class="card"><span class="card-number">01</span><h3>IGA and PAM architecture</h3><p>Architecture, modelling and governance guidance for identity lifecycles, roles, access certification and privileged access.</p></article>
+          <article class="card"><span class="card-number">02</span><h3>Directory and integration architecture</h3><p>Enterprise LDAP design, directory architecture, identity feeds, synchronization, provisioning and application onboarding.</p></article>
+          <article class="card"><span class="card-number">03</span><h3>Secrets and privileged identities</h3><p>Advisory and integration guidance for privileged identities, credentials, application secrets and machine identities.</p></article>
+          <article class="card"><span class="card-number">04</span><h3>Troubleshooting and observability</h3><p>Root-cause analysis, remote debugging, operational insight and maintainable engineering for complex identity infrastructures.</p></article>
+        </div>
+      </div>
+    </section>
 
-    <p>
-        Former IBM Worldwide SME for IBM Verify Identity Governance
-    </p>
+    <section class="experience" id="experience">
+      <div class="section-inner experience-grid">
+        <div>
+          <p class="section-label">Experience</p>
+          <h2>More than four decades of enterprise technology experience</h2>
+          <p class="lead">Franz Wolfhagen brings more than 25 years of specialized Identity and Access Management experience. His work spans architecture, modelling, implementation, integration and troubleshooting across identity governance, privileged access, directories and complex identity infrastructures.</p>
+          <p class="lead">As a former IBM Worldwide Subject Matter Expert, Franz has supported complex customer environments, high-impact technical situations and enterprise identity transformations. He also presents at IBM conferences and user group events on advanced integrations, observability and operational practices.</p>
+          <div class="experience-areas">
+            <article class="experience-area"><h3>Identity governance architecture</h3><p>Identity lifecycle architecture, role governance, role engineering, access certification, governance processes, provisioning models and application onboarding.</p></article>
+            <article class="experience-area"><h3>Privileged access and secrets</h3><p>PAM architecture, privileged identity governance, credential and secrets management, machine identities and integration with broader identity platforms.</p></article>
+            <article class="experience-area"><h3>Directory and LDAP architecture</h3><p>Enterprise LDAP architecture, schema and data modelling, replication, high availability, directory performance and operational resilience.</p></article>
+            <article class="experience-area"><h3>Identity integration architecture</h3><p>Identity feeds, HR-driven lifecycle processes, synchronization, provisioning connectors, IBM Verify Directory Integrator and SAP integration patterns.</p></article>
+            <article class="experience-area"><h3>Observability and troubleshooting</h3><p>Root-cause analysis, remote Java debugging, critical situation resolution, environment comparison, operational insight and platform optimization.</p></article>
+            <article class="experience-area"><h3>Advisory and modernization</h3><p>Architecture reviews, design validation, migration planning, technical mentoring, delivery governance and modernization of established identity platforms.</p></article>
+          </div>
+          <p class="experience-highlight"><strong>Specialized in complex identity problems.</strong> Combining deep product knowledge with architectural understanding of how identity governance, privileged access, directories, LDAP, secrets, integrations and operational processes interact across the complete solution.</p>
+        </div>
+        <dl class="facts">
+          <div class="fact"><dt>Governance</dt><dd>IBM Verify Identity Governance, ISIG and ISIM</dd></div>
+          <div class="fact"><dt>Privileged access</dt><dd>IBM Verify Privileged Identity</dd></div>
+          <div class="fact"><dt>Secrets</dt><dd>HashiCorp Vault, L4 certified</dd></div>
+          <div class="fact"><dt>Integration</dt><dd>IBM Verify Directory Integrator, SDI/TDI</dd></div>
+          <div class="fact"><dt>Directory</dt><dd>IBM Verify Directory Server</dd></div>
+          <div class="fact"><dt>Architecture</dt><dd>IGA, PAM, LDAP, provisioning and integration</dd></div>
+          <div class="fact"><dt>Specialized integration</dt><dd>SAP NetWeaver and enterprise applications</dd></div>
+          <div class="fact"><dt>Operations</dt><dd>Observability, debugging and critical situations</dd></div>
+          <div class="fact"><dt>Availability</dt><dd>Open for engagements from October 2026</dd></div>
+        </dl>
+      </div>
+    </section>
+    <section class="contact" id="contact">
+      <div class="section-inner contact-grid">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>Let us discuss your identity security challenge.</h2>
+        </div>
+        <a class="button" href="mailto:franzwolfhagen@identityconsult.dk">franzwolfhagen@identityconsult.dk <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
 
-    <p>
-        Available for consulting assignments from October 2026
-    </p>
-
-    <p>
-        Contact:
-        <a href="mailto:franzwolfhagen@identityconsult.dk">
-            franzwolfhagen@identityconsult.dk
-        </a>
-    </p>
+  <footer>
+    <div class="footer-inner">
+      <p>© 2026 Wolfhagen Identity Consult ApS. All rights reserved.</p>
+      <p>CVR 46740572</p>
+    </div>
+  </footer>
 </body>
 </html>
