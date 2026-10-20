@@ -1,0 +1,1 @@
+Copy the identity-fabric folder under the website insights directory. The page expects the site root two levels above and uses ../../index.html and ../../wolfhagen_vaabenskjold_bw_bold.png, matching the existing aligned Insights article layout.
